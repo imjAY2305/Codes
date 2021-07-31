@@ -5,6 +5,6 @@ Rule-03 -> Don't use only numbers as variable names
 
 */
 
-var phoneName = "Redmi Note 5 Pro"
-var phoneName = "Redmi Note 9 Pro"
+let phoneName = "Redmi Note 5 Pro"
+let phoneName = "Redmi Note 9 Pro"
 console.log(phoneName)

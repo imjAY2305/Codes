@@ -1,3 +1,4 @@
+// Similar to Dictionary
 let mybook = {
     title : "JavaScript",
     year : 2000,
