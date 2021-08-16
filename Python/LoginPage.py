@@ -7,13 +7,22 @@ def Create():
         userName = input("UserName : ")
         email = input("Mail ID : ")
         password = gp.getpass("Password : ")
-        with open("D:/Codes/Python/Data/UserName.txt","a") as ptr:
-            ptr.write(userName+"\n")
-        with open("D:\Codes\Python\Data\Email.txt","a") as ptr:
-            ptr.write(email+"\n")
-        with open("D:\Codes\Python\Data\Password.txt","a") as ptr:
-            ptr.write(password+"\n")
-        print("Login Credentials Registered, Thank You.")
+        with open("D:/Codes/Python/Data/UserName.txt","r") as u1, open("D:\Codes\Python\Data\Email.txt","r") as e1, open("D:\Codes\Python\Data\Password.txt","r") as p1:
+            users = list(u1.readlines())
+            emails = list(e1.readlines())
+            passwords = list(p1.readlines())
+            if((userName+'\n' in users) and (email+'\n' in emails) and (password+'\n' in passwords)):
+                print("User Already exists, Try with different details or Login using the same.")
+            else:
+                u1.close()
+                p1.close()
+                e1.close()
+                with open("D:/Codes/Python/Data/UserName.txt","a") as u1, open("D:\Codes\Python\Data\Email.txt","a") as e1, open("D:\Codes\Python\Data\Password.txt","a") as p1:
+                    u1.write(userName+'\n')
+                    p1.write(password+'\n')
+                    e1.write(email+'\n')
+                print("Login Credentials Registered, Thank You.")
+        
     elif(choice==2):
         print("\nTo continue, Please enter Super-Admin Credentials : ")
         userName = input("\nSuper-Admin UserName : ")
@@ -57,11 +66,12 @@ def SuperAdmin():
         with open("D:/Codes/Python/Data/UserName.txt") as u1, open("D:\Codes\Python\Data\Password.txt") as p1:
             users = list(u1.readlines())
             keys = list(p1.readlines())
+            print(users,keys)
             for i,j in zip(users,keys):
                 print(i[:len(i)-1],j[:len(j)-1])
             print()
     else:
-        print("Sorry, You are not supposed to access this page")
+        print("Incorrect Credentials, You don't have access to this page")
 
 #DRIVER CODE
 print("Welcome to Login Portal, Please select the below options \n1 : New User\n2 : Existing User\n3 : Super-Admin Controls\n4 : Exit")
@@ -76,4 +86,4 @@ while(True):
     elif(choice == 4):
         print("Thank You.")
         break
-    print("\nWhat next ?\n1 : New User\n2 : Existing User\n3 : Admin Controls\n4 : Exit")
+    print("\nWhat next ?\n1 : New User\n2 : Existing User\n3 : Super-Admin Controls\n4 : Exit")
