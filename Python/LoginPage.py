@@ -28,17 +28,25 @@ def Create():
         userName = input("\nSuper-Admin UserName : ")
         password = gp.getpass("Super-Admin Password : ")
         if(userName=="admin" and password=="Cooler Master"):
-            with open("D:/Codes/Python/Data/adminUserName.txt","a") as u1, open("D:/Codes/Python/Data/adminPassword.txt","a") as p1:
-                print("\nSuper-Admin Verified, Now enter the account details")
-                userName = input("\nEnter Admin UserName : ")
-                password = gp.getpass("Enter Admin Password : ")
-                password1 = gp.getpass("Enter Admin Password again : ")
-                if(password==password1):
-                    u1.write(userName+"\n")
-                    p1.write(password+"\n")
-                    print("\nAdmin user created.")
-                else:
-                    print("\nPasswords Mismatch")
+            print("\nSuper-Admin Verified, Now enter the account details")
+            userName = input("\nEnter Admin UserName : ")
+            password = gp.getpass("Enter Admin Password : ")
+            password1 = gp.getpass("Enter Admin Password again : ")
+            if(password==password1):
+                with open("D:/Codes/Python/Data/adminUserName.txt","r") as u1, open("D:/Codes/Python/Data/adminPassword.txt","r") as p1:
+                    users = list(u1.readlines())
+                    passwords = list(p1.readlines())
+                    if((userName+'\n' in users) and (password+'\n' in passwords)):
+                        print("Admin account already exists.")
+                    else:
+                        u1.close()
+                        p1.close()
+                        with open("D:/Codes/Python/Data/adminUserName.txt","a") as u1, open("D:/Codes/Python/Data/adminPassword.txt","a") as p1:
+                            u1.write(userName+"\n")
+                            p1.write(password+"\n")
+                        print("\nAdmin user created.")
+            else:
+                print("\nPasswords Mismatch")
         else:
             print("Super-Admin not verified.")
 
