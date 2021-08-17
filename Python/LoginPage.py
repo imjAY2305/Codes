@@ -66,6 +66,27 @@ def Login():
         else:
             print("Credentials mismatch\n")
 
+def Admin():
+    print("To Continue, PLease Login with admin credentials.")
+    userName = input("Enter UserName : ")
+    password  = input("Enter Password : ")
+    with open("D:/Codes/Python/Data/adminUserName.txt","r") as u1, open("D:/Codes/Python/Data/adminPassword.txt","r") as p1:
+        users = list(u1.readlines())
+        passwords = list(p1.readlines())
+        if((userName in users) and (password in passwords)):
+            print("Welcome "+userName+",")
+            while(True):
+                print("What would u like to do ?\n1 : View Accounts\n2 : Find User\n3 : View Admin Accounts\n4 : Find Admin User")
+                with open("D:/Codes/Python/Data/UserName.txt","r") as u1, open("D:/Codes/Python/Data/Password.txt","r") as p1:
+                    users = list(u1.readlines())
+                    passwords = list(p1.readlines())
+                    choice = int(input("\nEnter your choice : "))
+                    if(choice == 1):
+                        print(len(users)+" users recorded")
+                        for i,j in zip(users,passwords):
+                            print(i[:len(i)-1],j[:len(j)-1])
+                        print()
+
 def SuperAdmin():
     userName = input("Admin UserName : ")
     password = gp.getpass("Admin Password : ")
@@ -82,7 +103,7 @@ def SuperAdmin():
         print("Incorrect Credentials, You don't have access to this page")
 
 #DRIVER CODE
-print("Welcome to Login Portal, Please select the below options \n1 : New User\n2 : Existing User\n3 : Super-Admin Controls\n4 : Exit")
+print("Welcome to Login Portal, Please select the below options \n1 : New User\n2 : Existing User\n3 : Admin Controls\n4 : Super-Admin Controls\n5 : Exit")
 while(True):
     choice = int(input("\nEnter the Choice : "))
     if(choice == 1):
@@ -90,8 +111,10 @@ while(True):
     elif(choice == 2):
         Login()
     elif(choice == 3):
-        SuperAdmin()
+        Admin()
     elif(choice == 4):
+        SuperAdmin()
+    elif(choice == 5):
         print("Thank You.")
         break
-    print("\nWhat next ?\n1 : New User\n2 : Existing User\n3 : Super-Admin Controls\n4 : Exit")
+    print("\nWhat next ?\n1 : New User\n2 : Existing User\n3 : Admin Controls\n4 : Super-Admin Controls\n5 : Exit")
