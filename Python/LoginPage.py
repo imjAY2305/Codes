@@ -67,25 +67,56 @@ def Login():
             print("Credentials mismatch\n")
 
 def Admin():
-    print("To Continue, PLease Login with admin credentials.")
+    print("\nTo Continue, PLease Login with admin credentials.")
     userName = input("Enter UserName : ")
-    password  = input("Enter Password : ")
+    password  = gp.getpass("Enter Password : ")
     with open("D:/Codes/Python/Data/adminUserName.txt","r") as u1, open("D:/Codes/Python/Data/adminPassword.txt","r") as p1:
         users = list(u1.readlines())
         passwords = list(p1.readlines())
-        if((userName in users) and (password in passwords)):
-            print("Welcome "+userName+",")
+        if((userName+'\n' in users) and (password+'\n' in passwords)):
+            print("\nWelcome "+userName+",")
             while(True):
-                print("What would u like to do ?\n1 : View Accounts\n2 : Find User\n3 : View Admin Accounts\n4 : Find Admin User")
-                with open("D:/Codes/Python/Data/UserName.txt","r") as u1, open("D:/Codes/Python/Data/Password.txt","r") as p1:
-                    users = list(u1.readlines())
-                    passwords = list(p1.readlines())
-                    choice = int(input("\nEnter your choice : "))
-                    if(choice == 1):
-                        print(len(users)+" users recorded")
-                        for i,j in zip(users,passwords):
-                            print(i[:len(i)-1],j[:len(j)-1])
-                        print()
+                print("Select one\n1 : View and Find Accounts\n2 : Modify Data")
+                choice = int(input("Enter your choice : "))
+                if(choice == 1):
+                    while(True):
+                        print("What would u like to do ?\n1 : View Accounts\n2 : Find User\n3 : View Admin Accounts\n4 : Find Admin Usern\n5 : Go Back")
+                        with open("D:/Codes/Python/Data/UserName.txt","r") as u1, open("D:/Codes/Python/Data/Password.txt","r") as p1:
+                            with open("D:/Codes/Python/Data/adminUserName.txt","r") as au1, open("D:/Codes/Python/Data/adminPassword.txt","r") as ap1:
+                                users = list(u1.readlines())
+                                passwords = list(p1.readlines())
+                                adminUsers = list(au1.readlines())
+                                adminPasswords = list(ap1.readlines())
+                                choice = int(input("\nEnter your choice : "))
+                                if(choice == 1):
+                                    print(str(len(users))+" users recorded")
+                                    for i,j in zip(users,passwords):
+                                        print(i[:len(i)-1],j[:len(j)-1])
+                                    print()
+                                elif(choice == 2):
+                                    find = input("Enter the UserName to be found : ")
+                                    if(find+'\n' in users):
+                                        print("\nUser Exists.\n")
+                                    else:
+                                        print("User not Registered.")
+                                elif(choice == 3):
+                                    print(str(len(users))+" users recorded")
+                                    for i,j in zip(adminUsers,adminPasswords):
+                                        print(i[:len(i)-1],j[:len(j)-1])
+                                    print()
+                                elif(choice == 4):
+                                    find = input("Enter the Admin UserName to be found : ")
+                                    if(find+'\n' in adminUsers):
+                                        print("\nAdmin Exists.\n")
+                                    else:
+                                        print("Admin not Registered.")
+                                elif(choice == 5):
+                                    print("Exited.")
+                                    break
+                elif(choice == 2):
+                    pass
+        else:
+            print("Admin Not Registered.")
 
 def SuperAdmin():
     userName = input("Admin UserName : ")
