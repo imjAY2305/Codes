@@ -13,7 +13,8 @@ blank[200:300,100:400] = 0,0,255
 
 #Draw Rectangle
 rect = np.zeros((500,500,3), dtype="uint8")
-cv.rectangle(rect,(20,20),(250,250),(0,0,255),thickness=5)
+rect[:] = 0,255,0 #Green Colour
+cv.rectangle(rect,(20,20),(250,250),(0,0,255),thickness=cv.FILLED)
 cv.imshow("Rectangle",rect) 
 
 cv.waitKey(20000)
