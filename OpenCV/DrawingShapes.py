@@ -33,4 +33,4 @@ cv.putText(text,"IMJAY",(300,300),cv.FONT_HERSHEY_COMPLEX,1.0,(255,255,255),2)
 cv.imshow("Text",text)
 
 cv.waitKey(20000)
-cv.destroyAllWindows() 
+cv.destroyAllWindows()
